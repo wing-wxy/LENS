@@ -17,45 +17,54 @@
  */
 #include "link.h"
 
-Node* Link :: getStart( Node* start ) { return linkStart; }
+Node* Link :: getStart( Node* start ) { return startNode; }
 Link* Link :: setStart( Node* start ) {
-	linkStart = start;
+	startNode = start;
 	return this;
 }
 
 Node* Link :: getTarget( Node* target ) {
-	if ( TAG == linkType ) {
-		throw new Exception("can not connect a tag link to a node");
-	} else {
-		return targetNode;
-	}
+	if ( TAG == linkType ) 
+	  throw "can not connect a tag link to a node";
+	return targetNode;
 }
 Link* Link :: setTarget( Node* target ) {
-	if ( TAG == linkType ) {
-		throw new Exception("can not connect a tag link to a node");
-	} else {
-		targetNode = target;
-		return this;
-	}
+	if ( TAG == linkType ) 
+	  throw "can not connect a tag link to a node";
+	targetNode = target;
+	return this;
 }
 
 Tag* Link :: getTarget( Tag* target ) {
-	if ( NODE == linkType ) {
-		throw new Exception("can not connect a node link to a tag");
-	} else {
-		return targetTag;
-	}
+	if ( NODE == linkType ) 
+	  throw "can not connect a node link to a tag";
+	return targetTag;
 }
 Link* Link :: setTarget( Tag* target ) {
 	if ( NODE == linkType ) {
-		throw new Exception("can not connect a node link to a tag");
-	} else {
+		throw "can not connect a node link to a tag";
 		target = targetTag;
 		return this;
 	}
 }
 
-Node* Link :: setType( int type) {
+Link* Link :: setType( int type ) {
 	linkType = type;
 	return this;
+}
+
+string Link :: getSD( ) {
+	return ( linkType == 0 ? 
+				(
+				 "N|" +
+				 startNode	->	getName( ) +
+				 targetNode -> getName( ) 
+				) 
+				: 
+				(
+				 "T|" +
+				 startNode -> getName( ) +
+				 targetTag -> getName( )
+				)
+		   );
 }

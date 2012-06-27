@@ -65,6 +65,7 @@ public:
 	short getInterface( string keyName );
 	Node* setInterface( string keyName, short powType );
 
+
 };
 
 #endif

@@ -18,7 +18,9 @@
 
 #ifndef LINK_H
 #define LINK_H
-#include "node.h"
+#include "tag.h"
+#define TAG 1
+#define NODE 0
 class Link : public Node {
 protected:
    	static long	linkCount;
@@ -33,9 +35,15 @@ public:
 
 	long countLink( ) { return linkCount; }
 
+	Link* setType( int type );
+
 	Node* getStart( Node* start );
 	Link* setStart( Node* start );
 	Node* getTarget( Node* target );
 	Link* setTarget( Node* target );
+	Tag* getTarget( Tag* target );
+	Link* setTarget( Tag* target );
+
+	string getSD( ); 
 };
 #endif

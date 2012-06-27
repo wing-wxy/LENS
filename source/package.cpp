@@ -19,61 +19,33 @@
 #include <string>
 
 Package* Package :: addNode( Node* node ) {
-	long pos;
-	for (pos = 0; pos < nodes.size( ); pos++) {
-		if ( ( nodes.at( pos ) -> name ) == ( node -> name ) ) {
-			throw new Exception( "Node already exists" );
-		}
-	}
-	nodes.push_back( node );
+	NULL == nodes[ node -> getName( ) ] ? 
+		nodes[ node -> getName( ) ] = node :
+		throw "node already in package";
 	return this;
 }
 Package* Package :: addTag( Tag* tag ) {
-	long pos;
-	for (pos = 0; pos < tags.size( ); pos++) {
-		if ( ( tags.at( pos ) -> name ) == ( tag -> name ) ) {
-			throw new Exception( "Node already exists" );
-		}
-	}
-	tags.push_back( tag );
+	NULL == tags[ tag -> getName( ) ] ? 
+		tags[ tag -> getName( ) ] = tag :
+		throw "tag already in package";
 	return this;
 }
 
 Package* Package :: rmNode( string nodeName ) {
-	long pos;
-	for (pos = 0; pos < nodes.size( ); pos++) {
-		if ( ( nodes.at( pos ) -> name ) == nodeName )
-		  nodes.erase( pos );
-	}
+	nodes.erase( nodes.find( nodeName ) ); 
 	return this;
 }
 Package* Package :: rmTag( string tagName ) {
-	long pos;
-	for (pos = 0; pos < tags.size( ); pos++) {
-		if ( ( tags.at( pos ) -> name ) == tagName )
-		  tags.erase( pos );
-	}
+	tags.erase( tags.find( tagName ) ); 
 	return this;
 }
 
 Node* Package :: getNode( string nodeName ) {
-	long pos;
-	for (pos = 0; pos < nodes.size( ); pos++) {
-		if ( ( nodes.at( pos ) -> getName( ) ) == nodeName ) {
-			return nodes.at( pos );
-		}
-	}
-	return NULL;
+	return nodes[ nodeName ];
 }
 
-Node* Package :: getTag( string tagName ) {
-	long pos;
-	for (pos = 0; pos < tags.size( ); pos++) {
-		if ( ( tags.at( pos ) -> getName( ) ) == tagName ) {
-			return tags.at( pos );
-		}
-	}
-	return NULL;
+Tag* Package :: getTag( string tagName ) {
+	return tags[ tagName ];
 }
 
 //Unfinished
@@ -82,12 +54,4 @@ vector<Node*>* Package :: getEle(
 			vector<char> comp,
 			vector<string> valuesExp 
 			) {
-	int posT;
-	long posN;
-	for (posN = 0; posN < nodes.size( ); posN++) {
-		for (posT = 0; posT < tagsExp.size( ); posT++) {
-			if ( NULL == tagsExp.at( pos ) )
-			  throw new Exception("Tag not belong to selected package");
-		}
-	}
 }

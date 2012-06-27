@@ -18,12 +18,13 @@
 
 #ifndef PACKAGE_H
 #define PACKAGE_H
-#include "node.h"
-#include <deque>
+#include "tag.h"
+#include <map>
+#include <vector>
 class Package : public Node {
 protected:
-	deque<Node*> nodes;
-	deque<Tag*> tags;
+	map<string, Node*> nodes;
+	map<string, Tag*> tags;
 public:
 	Package* addNode( Node* node );
 	Package* addTag( Tag* tag );

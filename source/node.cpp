@@ -57,10 +57,3 @@ Node* Node :: setFltVal( string keyName, double value ) {
 	valFlt[ keyName ] = value;
 	return this;
 }
-Node* Node :: recordInto( FILE *fileToSave ) {
-	//*/SomeThing
-}
-
-Node* Node :: readFrom( FILE *fileToRead ) {
-	//*/SomeThing
-}
