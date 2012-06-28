@@ -39,10 +39,5 @@ public:
 	Node*	getNode( string nodeName );
 	Tag*	getTag( string tagName );
 
-	vector<Node*>* getEleByTag(
-				vector<string> tagsExp,
-				vector<char> comp,
-				vector<string> valuesExp 
-				);
 };
 #endif

@@ -84,11 +84,3 @@ Node* Package :: getNode( string nodeName ) {
 Tag* Package :: getTag( string tagName ) {
 	return tags[ tagName ];
 }
-
-//Unfinished
-vector<Node*>* Package :: getEleByTag(
-			vector<string> tagsExp,
-			vector<char> comp,
-			vector<string> valuesExp 
-			) {
-}
