@@ -18,6 +18,9 @@
 
 #ifndef NODE_H
 #define NODE_H
+#define STRING 0
+#define NUMBER 1
+#define FLOAT 2
 
 #include <string>
 #include <map>
@@ -32,22 +35,13 @@ protected:
 	map<string,string>	valStr;
 	map<string,long>	valNum;
 	map<string,double>	valFlt;
-	map<string,short>	interface;
-
-	int getNameSize( )	{ return name.size( ); }
-	int getVStrSize( )	{ return valStr.size( ); }
-	int getVNumSize( )	{ return valNum.size( ); }
-	int getVFltSize( )	{ return valFlt.size( ); }
-	int getInterSize( )	{ return interface.size( ); }
+	map<string,short>	interface;	//0 - string 1 - num 2 - float
 
 public:
 
 	Node( ) { ++nodeCount; } 
 
 	long countNodes( ) { return nodeCount; }
-
-	Node* recordInto( FILE *fileToSave );
-	Node* readFrom( FILE *fileToSave );
 
 	long getid( );
 	Node* setid( long input_id );

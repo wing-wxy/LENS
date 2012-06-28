@@ -16,18 +16,55 @@
  * =====================================================================================
  */
 #include "package.h"
+#include "link.h"
 #include <string>
+#include "universe.h"
 
 Package* Package :: addNode( Node* node ) {
-	NULL == nodes[ node -> getName( ) ] ? 
-		nodes[ node -> getName( ) ] = node :
+	if ( NULL != nodes[ node -> getName( ) ] ) {
 		throw "node already in package";
+	} else {
+		nodes[ node -> getName( ) ] = node;
+		map<string, Tag*> :: iterator it;
+		Link* tagLink;
+		for (it = tags.begin( ); it != tags.end( ); it++) {
+			Link* tagLink = new Link( );
+			tagLink -> setType( TAG );
+			tagLink -> setStart( node );
+			tagLink -> setTarget( it -> second );
+			Universe :: addTagLink( tagLink );
+		}
+	}
 	return this;
 }
 Package* Package :: addTag( Tag* tag ) {
-	NULL == tags[ tag -> getName( ) ] ? 
-		tags[ tag -> getName( ) ] = tag :
-		throw "tag already in package";
+	if ( NULL != tags[ tag -> getName( ) ] ) {
+		throw "node already in package";
+	} else {
+		tags[ tag -> getName( ) ] = tag;
+		map<string, Node*> :: iterator it;
+		Link* tagLink;
+		for (it = nodes.begin( ); it != nodes.end( ); it++) {
+			Link* tagLink = new Link( );
+			tagLink -> setType( TAG );
+			tagLink -> setStart( it -> second );
+			tagLink -> setTarget( tag );
+			Universe :: addTagLink( tagLink );
+		}
+	}
+	return this;
+}
+
+Package* Package :: addNode( Node* node, short unpack ) {
+	NULL != nodes[ node -> getName( ) ] ?
+		throw "node already in package" :
+		nodes[ node -> getName( ) ] = node;
+	return this;
+}
+Package* Package :: addTag( Tag* tag, short unpack ) {
+	NULL != tags[ tag -> getName( ) ] ?
+		throw "node already in package" :
+		tags[ tag -> getName( ) ] = tag;
 	return this;
 }
 
@@ -49,7 +86,7 @@ Tag* Package :: getTag( string tagName ) {
 }
 
 //Unfinished
-vector<Node*>* Package :: getEle(
+vector<Node*>* Package :: getEleByTag(
 			vector<string> tagsExp,
 			vector<char> comp,
 			vector<string> valuesExp 

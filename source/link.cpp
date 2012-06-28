@@ -10,8 +10,8 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  Clyce
+ *   Organization:  TBLS
  *
  * =====================================================================================
  */
@@ -58,7 +58,8 @@ string Link :: getSD( ) {
 				(
 				 "N|" +
 				 startNode	->	getName( ) +
-				 targetNode -> getName( ) 
+				 targetNode -> getName( ) +
+				 "|" + this -> getName( )
 				) 
 				: 
 				(

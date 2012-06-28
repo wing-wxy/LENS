@@ -18,6 +18,7 @@
 
 #ifndef PACKAGE_H
 #define PACKAGE_H
+#define UNPACK 0
 #include "tag.h"
 #include <map>
 #include <vector>
@@ -29,13 +30,16 @@ public:
 	Package* addNode( Node* node );
 	Package* addTag( Tag* tag );
 
+	Package* addNode( Node* node, short unpack );
+	Package* addTag( Tag* tag, short unpack );
+
 	Package* rmNode( string nodeName );
 	Package* rmTag( string tagName );
 
 	Node*	getNode( string nodeName );
 	Tag*	getTag( string tagName );
 
-	vector<Node*>* getEle(
+	vector<Node*>* getEleByTag(
 				vector<string> tagsExp,
 				vector<char> comp,
 				vector<string> valuesExp 

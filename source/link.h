@@ -23,17 +23,11 @@
 #define NODE 0
 class Link : public Node {
 protected:
-   	static long	linkCount;
 	Node*		startNode;
 	Node*		targetNode;
 	Tag*		targetTag;
 	short		linkType;	//0 - node-node, 1 - node-tag
 public:
-	Link( ) {
-		++linkCount;
-	}
-
-	long countLink( ) { return linkCount; }
 
 	Link* setType( int type );
 
